@@ -1,0 +1,27 @@
+mysql -u username -p
+
+CREATE DATABASE publications;         #create new database called publications
+USE publications;                     #access publications to make changes
+
+#GRANT ALL ON publications.* TO 'user'@'localhost' IDENTIFIED BY 'password';
+
+#table of videos
+CREATE TABLE videolibrary(
+  ID CHAR(16),                        #VARCHAR for sequence of letters and numbers
+  timestamp TIMESTAMP,                #TIMESTAMP for exact date and time vide was recorded
+  video VARCHAR(128) AUTO_INCREMENT,  #VARCHAR for PATH to video
+  thumbnail VARCHAR(128),             #VARCHAR for PATH to video thumbnail
+  hash CHAR(32)                       #CHAR of length 32 for hash using SHA-256
+  )
+ENGINE MyISAM;
+
+#table of images that make up video
+CREATE TABLE video(
+  hash CHAR(32),                      #CHAR of length 32 for hash using SHA-256
+  image VARCHAR(128),                 #VARCHAR for PATH to video image
+  timestamp TIME                      #TIME for time in video the image was taken from
+  )
+ENGINE MyISAM;
+
+DESCRIBE videolibrary;  #shows videolibrary table after it is created
+DESCRIBE video;  #shows video table after it is created
